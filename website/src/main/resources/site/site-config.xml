@@ -1,0 +1,11 @@
+<site>
+  <title>RebelCraft Java HTML</title>
+  <baseUrl>https://teggr.github.io/rebelcraft/</baseUrl>
+  <theme>docs</theme>
+  <description>Build Java HTML components, preview them, and publish a TeaVM-powered Electrostatic showcase.</description>
+  <author>
+    <name>Robin Tegg</name>
+  </author>
+  <docsSections>installation,guides,projects</docsSections>
+  <docsSectionLabels>installation=Getting started,guides=Guides,projects=Projects</docsSectionLabels>
+</site>
