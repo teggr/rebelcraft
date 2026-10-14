@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.github.teggr</groupId>
+        <artifactId>rebelcraft</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>rebelcraft-showcase-plugin</artifactId>
+    <name>RebelCraft showcase components</name>
+    <description>Reusable j2html components, layouts, previews, and TeaVM repository explorer.</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.teavm</groupId>
+            <artifactId>teavm-classlib</artifactId>
+            <version>${teavm.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.teggr</groupId>
+            <artifactId>j2html-toolkit-essentials</artifactId>
+            <version>${j2html-toolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.teggr</groupId>
+            <artifactId>java-html-toolkit-html-catalog</artifactId>
+            <version>${java-html-toolkit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.teavm</groupId>
+            <artifactId>teavm-jso-apis</artifactId>
+            <version>${teavm.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.teavm</groupId>
+                <artifactId>teavm-maven-plugin</artifactId>
+                <version>${teavm.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile-repository-explorer</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>io.github.teggr.rebelcraft.showcase.RepositoryExplorerApp</mainClass>
+                            <targetType>JAVASCRIPT</targetType>
+                            <targetDirectory>${project.build.outputDirectory}/site-assets</targetDirectory>
+                            <targetFileName>repository-explorer.js</targetFileName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-html-catalog</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>io.github.teggr.html.catalog.CatalogRunner</mainClass>
+                            <arguments>
+                                <argument>--output-dir</argument>
+                                <argument>${project.build.directory}/html-catalog</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
