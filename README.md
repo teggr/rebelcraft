@@ -29,20 +29,17 @@ catalog is also copied into that site at `catalog/index.html`.
 
 ## Run locally
 
-On Windows, run the PowerShell script from the repository root to build the
-site and start Electrostatic:
+From the repository root, build the site and start Electrostatic:
 
-```powershell
-.\run-site.ps1
+```sh
+mvn --batch-mode --no-transfer-progress --projects website --also-make verify && mvn --file website/pom.xml -Delectrostatic.inputDirectory=target/site-source -Delectrostatic.outputDirectory=target/generated-site -Delectrostatic.baseUrl=http://localhost:8000/ -Delectrostatic.port=8000 -Delectrostatic.watch=true io.github.teggr:electrostatic-maven-plugin:0.0.4:serve
 ```
 
 Then open http://localhost:8000/. The repository explorer is at
 http://localhost:8000/repos/, and the component catalog is at
-http://localhost:8000/catalog/. Press Ctrl+C in PowerShell to stop the server.
-To use another port, pass it to the script, for example `.\run-site.ps1 -Port 8080`.
-Electrostatic's watch-and-reload mode is enabled by default; it monitors the
-assembled input directory at `website/target/site-source` and does not
-recompile Java sources. Disable watch mode with `.\run-site.ps1 -NoWatch`.
+http://localhost:8000/catalog/. Press Ctrl+C to stop the server. The watch
+option monitors `website/target/site-source` for changes; it does not recompile
+Java sources.
 
 ## Published ecosystem projects
 
