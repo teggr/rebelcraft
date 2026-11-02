@@ -23,7 +23,7 @@
         <junit.version>5.12.2</junit.version>
         <j2html-toolkit.version>0.0.6</j2html-toolkit.version>
         <java-html-toolkit.version>1.0.3</java-html-toolkit.version>
-        <electrostatic.version>0.0.4</electrostatic.version>
+        <electrostatic.version>0.0.6</electrostatic.version>
         <teavm.version>0.16.0</teavm.version>
     </properties>
 
